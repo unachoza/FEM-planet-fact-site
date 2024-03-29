@@ -1,14 +1,17 @@
-#root {
+* {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #070724;
 }
 
 /* ---- Small (Phone) 375px ------ */
 @media only screen and (min-width: 375px) and (min-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {
 }
+
 /* ---- Medium (Tablet) 768px x 1024px ---- */
 @media only screen and (min-width: 375px) and (min-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {
 }
+
 /* ---- Large (Desktop) 1440px --- */
