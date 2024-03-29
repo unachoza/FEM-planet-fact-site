@@ -1,20 +1,20 @@
 .container {
-  border: solid grey 1px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  width: fit-content;
+	border: solid #838391 1px;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	width: fit-content;
 }
 
 .title {
-  color: #838391;
-  font-size: 12px;
-  font-weight: bold;
+	color: #838391;
+	font-size: 12px;
+	font-weight: bold;
 }
 
 .fact {
-  font-family: "Antonio", sans-serif;
-  font-size: 40px;
-  line-height: 50px;
-  letter-spacing: -1.5px;
+	font-family: "Antonio", sans-serif;
+	font-size: 40px;
+	line-height: 50px;
+	letter-spacing: -1.5px;
 }
