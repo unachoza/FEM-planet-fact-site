@@ -5,6 +5,7 @@ import { PlanetData, QuickFacts, ContentType } from "./utils/types";
 import data from "./data.json";
 
 const App = () => {
+	//TODO: add back in Planet type (replace string)
 	const [navState, setNavState] = useState<string>("Mercury");
 	const [content, setContent] = useState<ContentType>("planet");
 
@@ -18,7 +19,6 @@ const App = () => {
 	};
 
 	const shapeFactData = (data: PlanetData): QuickFacts => {
-		console.log(data);
 		const quickFacts: QuickFacts = {
 			rotationTime: data.rotation,
 			revolutionTime: data.revolution,
@@ -31,17 +31,24 @@ const App = () => {
 
 	const transformPlanetData = (
 		dataArray: PlanetData[]
-	): Record<string, Omit<PlanetData, "name">> => {
-		const result: Record<string, Omit<PlanetData, "name">> = {};
-
+	): Record<string, PlanetData> => {
+		const result: Record<string, PlanetData> = {};
 		dataArray.forEach((obj) => {
-			const { name, ...rest } = obj;
-			result[name] = rest;
+			const { name } = obj;
+			result[name] = { ...obj };
 		});
 
 		return result;
 	};
 	const transformedPlanetData = transformPlanetData(data);
+	console.log(transformedPlanetData);
+
+	console.log(shapeFactData(transformedPlanetData["Earth"]));
+
+	const planetFacts = Object.entries(
+		shapeFactData(transformedPlanetData[navState])
+	);
+	// console.log(transformedPlanetData.forEach(record => shapeFactData(record))
 
 	const factData = {
 		title: "string",
@@ -81,25 +88,9 @@ const App = () => {
 				</section>
 			</main>
 			<section className="quick-fact-container">
-				<Card style="container" content={factData} />
-				<ul>
-					<li>
-						<span></span>
-						<div className="fact"></div>
-					</li>
-					<li>
-						<span></span>
-						<div className="fact"></div>
-					</li>
-					<li>
-						<span></span>
-						<div className="fact"></div>
-					</li>
-					<li>
-						<span></span>
-						<div className="fact"></div>
-					</li>
-				</ul>
+				{planetFacts.map((fact) => {
+					return <Card style="container" content={fact} />;
+				})}
 			</section>
 		</>
 	);
