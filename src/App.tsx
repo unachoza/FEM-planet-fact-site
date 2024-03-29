@@ -1,7 +1,7 @@
 import { MouseEventHandler, useState } from "react";
 import Card from "./Components/Card/Card";
 import Nav from "./Components/Nav/Nav";
-import { PlanetData, Planet, QuickFacts, ContentType } from "./utils/types";
+import { PlanetData, QuickFacts, ContentType } from "./utils/types";
 import data from "./data.json";
 
 const App = () => {
@@ -28,10 +28,26 @@ const App = () => {
 
 		return quickFacts;
 	};
+
+	const transformPlanetData = (
+		dataArray: PlanetData[]
+	): Record<string, Omit<PlanetData, "name">> => {
+		const result: Record<string, Omit<PlanetData, "name">> = {};
+
+		dataArray.forEach((obj) => {
+			const { name, ...rest } = obj;
+			result[name] = rest;
+		});
+
+		return result;
+	};
+	const transformedPlanetData = transformPlanetData(data);
+
 	const factData = {
 		title: "string",
 		text: "string",
 	};
+
 	return (
 		<>
 			<Nav
@@ -39,15 +55,14 @@ const App = () => {
 				updatePageContent={handleNavChange}
 			/>
 			<main>
-				<img src="" alt="" />
+				<img
+					src={`/assets/planet-${navState.toLocaleLowerCase()}.svg`}
+					alt=""
+				/>
 				<section>
-					<h1> Earth</h1>
+					<h1>{navState}</h1>
 					<div className="content">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Eos quo ipsum ducimus maxime, incidunt quisquam
-						officiis, nulla nihil pariatur alias laudantium itaque
-						expedita veritatis unde neque ratione quidem! Placeat,
-						sint.
+						{transformedPlanetData[navState].overview.content}
 					</div>
 					<div className="source">
 						<span>link</span>
