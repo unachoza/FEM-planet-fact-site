@@ -1,14 +1,19 @@
 import { MouseEventHandler, useState } from "react";
 import Card from "./Components/Card/Card";
 import Nav from "./Components/Nav/Nav";
-import { PlanetData, QuickFacts, ContentType } from "./utils/types";
+import {
+	PlanetData,
+	QuickFacts,
+	ContentType,
+	DataWithSource,
+} from "./utils/types";
 import data from "./data.json";
 import "./App.css";
 
 const App = () => {
 	//TODO: add back in Planet type (replace string)
 	const [navState, setNavState] = useState<string>("Mercury");
-	const [content, setContent] = useState<ContentType>("planet");
+	const [contentState, setContentState] = useState<ContentType>("overview");
 
 	const getPlanetNames = (data: PlanetData[]): string[] => {
 		return data.map((entry) => entry.name);
@@ -42,7 +47,6 @@ const App = () => {
 		return result;
 	};
 	const transformedPlanetData = transformPlanetData(data);
-	console.log(transformedPlanetData);
 
 	const planetFacts = Object.entries(
 		shapeFactData(transformedPlanetData[navState])
@@ -53,13 +57,27 @@ const App = () => {
 			obj[key as keyof PlanetData].hasOwnProperty("content")
 		);
 	};
+	const getContentCategoriesObject = (obj: PlanetData) => {
+		const contentCategories: Partial<
+			Record<keyof PlanetData, DataWithSource>
+		> = {};
+		Object.entries(obj).forEach(([key, value]) => {
+			if (typeof value === "object" && "content" in value) {
+				contentCategories[key as keyof PlanetData] =
+					value as DataWithSource;
+			}
+		});
+		return contentCategories;
+	};
 
 	const contentCategories = getContentCategories(
 		transformedPlanetData[navState]
 	);
 
-	console.log(transformedPlanetData[navState]);
-	console.log(contentCategories);
+	const planetContentObject = getContentCategoriesObject(
+		transformedPlanetData[navState]
+	);
+
 	return (
 		<>
 			<Nav
@@ -67,17 +85,21 @@ const App = () => {
 				updatePageContent={handleNavChange}
 			/>
 			<main>
-				<img
-					src={`/assets/planet-${navState.toLocaleLowerCase()}.svg`}
-					alt=""
-				/>
-				<section>
+				<section className="image-container">
+					<img
+						src={`/assets/planet-${navState.toLocaleLowerCase()}.svg`}
+						alt="cartoon planet"
+					/>
+				</section>
+				<section className="content-container">
 					<h1>{navState}</h1>
 					<div className="content">
-						{transformedPlanetData[navState].overview.content}
+						{planetContentObject[contentState]?.content}
 					</div>
 					<div className="source">
-						<span>link</span>
+						<a href={planetContentObject[contentState]?.source}>
+							Wikipedia
+						</a>
 					</div>
 
 					<div className="content-link-list">
@@ -85,7 +107,7 @@ const App = () => {
 							return (
 								<Card
 									key={i}
-									style="container"
+									style="content-card"
 									content={[(i + 1).toString(), category]}
 								/>
 							);
@@ -95,7 +117,7 @@ const App = () => {
 			</main>
 			<section className="quick-fact-container">
 				{planetFacts.map((fact, i) => {
-					return <Card key={i} style="container" content={fact} />;
+					return <Card key={i} style="fact-card" content={fact} />;
 				})}
 			</section>
 		</>
