@@ -1,7 +1,4 @@
 * {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
 	text-align: center;
 	background-color: #070724;
 }
@@ -21,4 +18,18 @@ h2 {
 	letter-spacing: -1.5px;
 	text-transform: uppercase;
 	color: white;
+}
+
+section.quick-fact-container {
+	display: flex;
+	justify-content: space-around;
+}
+main {
+	display: flex;
+	justify-content: space-between;
+	margin: 8% 15%;
+}
+
+section {
+	margin: 1em;
 }
