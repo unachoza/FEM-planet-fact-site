@@ -1,16 +1,27 @@
-.container {
+.fact-card {
 	border: solid #838391 1px;
 	display: flex;
 	flex-direction: column;
 	padding: 2em 3em 2em 1em;
-	width: fit-content;
+	width: 255px;
 	align-items: flex-start;
+	margin: 0px 1em;
+}
+
+.content-card {
+	width: 350px;
+	height: 50px;
+	border: solid #838391 1px;
+	display: flex;
+	margin: 10px 0px;
 }
 
 .title {
 	color: #838391;
 	font-size: 12px;
 	font-weight: bold;
+	display: flex;
+	align-items: center;
 }
 
 .fact {
@@ -18,4 +29,14 @@
 	font-size: 40px;
 	line-height: 50px;
 	letter-spacing: -1.5px;
+}
+
+.content-card .title {
+	font-size: 20px;
+	color: #838391;
+	text-transform: uppercase;
+	margin: 0px 30px;
+}
+.content-card .fact {
+	font-size: 20px;
 }
