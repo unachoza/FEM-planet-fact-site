@@ -3,6 +3,7 @@ import Card from "./Components/Card/Card";
 import Nav from "./Components/Nav/Nav";
 import { PlanetData, QuickFacts, ContentType } from "./utils/types";
 import data from "./data.json";
+import "./App.css";
 
 const App = () => {
 	//TODO: add back in Planet type (replace string)
@@ -43,18 +44,22 @@ const App = () => {
 	const transformedPlanetData = transformPlanetData(data);
 	console.log(transformedPlanetData);
 
-	console.log(shapeFactData(transformedPlanetData["Earth"]));
-
 	const planetFacts = Object.entries(
 		shapeFactData(transformedPlanetData[navState])
 	);
-	// console.log(transformedPlanetData.forEach(record => shapeFactData(record))
 
-	const factData = {
-		title: "string",
-		text: "string",
+	const getContentCategories = (obj: PlanetData) => {
+		return Object.keys(obj).filter((key) =>
+			obj[key as keyof PlanetData].hasOwnProperty("content")
+		);
 	};
 
+	const contentCategories = getContentCategories(
+		transformedPlanetData[navState]
+	);
+
+	console.log(transformedPlanetData[navState]);
+	console.log(contentCategories);
 	return (
 		<>
 			<Nav
@@ -74,22 +79,23 @@ const App = () => {
 					<div className="source">
 						<span>link</span>
 					</div>
+
 					<div className="content-link-list">
-						<h3>
-							<span></span>Overview
-						</h3>
-						<h3>
-							<span></span>Internal Structure
-						</h3>
-						<h3>
-							<span></span>Surface Geology
-						</h3>
+						{contentCategories.map((category, i) => {
+							return (
+								<Card
+									key={i}
+									style="container"
+									content={[(i + 1).toString(), category]}
+								/>
+							);
+						})}
 					</div>
 				</section>
 			</main>
 			<section className="quick-fact-container">
-				{planetFacts.map((fact) => {
-					return <Card style="container" content={fact} />;
+				{planetFacts.map((fact, i) => {
+					return <Card key={i} style="container" content={fact} />;
 				})}
 			</section>
 		</>
