@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import "./Card.css";
 
 type CardContent = string[];
@@ -5,11 +6,13 @@ type CardContent = string[];
 interface CardProps {
 	style: string;
 	content: CardContent;
+	updatePlanetContent?: MouseEventHandler<HTMLDivElement>;
 }
 
-const Card = ({ style, content }: CardProps): JSX.Element => {
+const Card = ({ style, content, updatePlanetContent }: CardProps): JSX.Element => {
+	console.log(style);
 	return (
-		<div className={style}>
+		<div className={style} onClick={updatePlanetContent ? (event) => updatePlanetContent(event) : () => {}}>
 			<div className="title">{content[0]?.toUpperCase()}</div>
 			<div className="fact">{content[1].toUpperCase()}</div>
 		</div>

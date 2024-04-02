@@ -7,17 +7,9 @@ export type DataWithSource = {
 	source: Link;
 };
 
-export type ContentType = "planet" | "internal" | "geology";
+export type ContentType = "overview" | "structure" | "geology";
 
-export type Planet =
-	| "Mercury"
-	| "Venus"
-	| "Earth"
-	| "Mars"
-	| "Jupiter"
-	| "Saturn"
-	| "Uranus"
-	| "Neptune";
+export type Planet = "Mercury" | "Venus" | "Earth" | "Mars" | "Jupiter" | "Saturn" | "Uranus" | "Neptune";
 
 export type PlanetImages = {
 	planet: Link;

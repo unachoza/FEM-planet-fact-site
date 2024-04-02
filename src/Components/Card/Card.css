@@ -14,6 +14,7 @@
 	border: solid #838391 1px;
 	display: flex;
 	margin: 10px 0px;
+	background-color: #070724;
 }
 
 .title {
@@ -39,4 +40,10 @@
 }
 .content-card .fact {
 	font-size: 20px;
+}
+.content-card.active {
+}
+
+.content-card:hover {
+	background-color: #38384f;
 }
