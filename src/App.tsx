@@ -1,7 +1,7 @@
 import { MouseEventHandler, useState } from "react";
 import Card from "./Components/Card/Card";
 import Nav from "./Components/Nav/Nav";
-import { PlanetData, QuickFacts, ContentType, DataWithSource, Planet } from "./utils/types";
+import { Link, PlanetData, QuickFacts, ContentType, DataWithSource, Planet, PlanetImages } from "./utils/types";
 import data from "./data.json";
 import "./App.css";
 
@@ -10,8 +10,9 @@ const App = () => {
 	const [contentState, setContentState] = useState<ContentType>("overview");
 
 	//TODO:
-	//switch color theme by planet
+	//add images
 	//responsive design for mobile && tablet
+	//Mobile menu component
 
 	const getPlanetNames = (data: PlanetData[]): string[] => {
 		return data.map((entry) => entry.name);
@@ -50,8 +51,14 @@ const App = () => {
 		return result;
 	};
 
-	const transformedPlanetData = transformPlanetData(data);
+	const showPlanetImageOverlay = (planetData: PlanetData, contentState: ContentType): Link => {
+		if (contentState === "overview") return planetData.images.planet;
+		else if (contentState === "structure") return planetData.images.internal;
+		else if (contentState === "geology") return planetData.images.geology;
+		return "";
+	};
 
+	const transformedPlanetData = transformPlanetData(data);
 	const planetFacts = Object.entries(shapeFactData(transformedPlanetData[navState]));
 
 	const getContentCategories = (obj: PlanetData) => {
@@ -77,12 +84,15 @@ const App = () => {
 			<Nav pageNames={getPlanetNames(data)} updatePageContent={handleNavChange} />
 			<main>
 				<section className="image-container">
-					<img src={`/assets/planet-${navState.toLocaleLowerCase()}.svg`} alt="cartoon planet" />
+					{/* <img src={`/assets/planet-${navState.toLocaleLowerCase()}.svg`} alt="planet" /> */}
+					<img src={showPlanetImageOverlay(transformedPlanetData[navState], contentState)} alt="cartoon planet" />
 				</section>
 				<section className="content-container">
 					<h1>{navState}</h1>
 					<div className="content">{planetContentObject[contentState]?.content}</div>
 					<div className="source">
+						{" "}
+						Source:
 						<a href={planetContentObject[contentState]?.source}>Wikipedia</a>
 					</div>
 

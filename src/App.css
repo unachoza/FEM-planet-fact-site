@@ -1,22 +1,55 @@
-* {
-	text-align: center;
-}
-
-/* ---- Small (Phone) 375px ------ */
-@media only screen and (min-width: 375px) and (min-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {
-}
-
-/* ---- Medium (Tablet) 768px x 1024px ---- */
-@media only screen and (min-width: 375px) and (min-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {
-}
-
 /* ---- Large (Desktop) 1440px --- */
+h1 {
+	font-family: "Antonio", sans-serif;
+	font-size: 80px;
+	margin: 0;
+}
+
 h2 {
-	font-family: Antonio Medium;
+	font-family: "Antonio", sans-serif;
 	font-size: 40px;
 	letter-spacing: -1.5px;
 	text-transform: uppercase;
 	color: white;
+}
+
+main {
+	display: flex;
+	justify-content: space-between;
+	margin: 5% 12.5%;
+}
+
+section {
+	margin: 1em;
+}
+
+section.image-container {
+	width: 64%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+section.content-container {
+	width: 33%;
+	text-align: left;
+}
+
+.image-container img {
+	max-height: 500px;
+}
+
+.content {
+	text-align: left;
+}
+
+.source {
+	margin: 15px 0px;
+	text-align: left;
+}
+
+.source a {
+	margin: 5px;
 }
 
 section.quick-fact-container {
@@ -24,24 +57,25 @@ section.quick-fact-container {
 	justify-content: space-around;
 	margin: 0% 12.5%;
 }
-main {
-	display: flex;
-	justify-content: space-between;
-	margin: 0% 12.5%;
+
+/* ---- Small (Phone) 375px ------ */
+/* only screen and (max-width: 767px) */
+@media (min-width: 375px) and (max-width: 767px) {
+	* {
+		color: red;
+	}
+	div.content {
+		color: red;
+	}
 }
 
-section {
-	margin: 1em;
-}
-section.image-container {
-	width: 64%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-section.content-container {
-	width: 33%;
-}
-.image-container img {
-	max-height: 500px;
+/* ---- Medium (Tablet) 768px x 1024px ---- */
+@media (min-width: 768px) and (max-width: 900px) {
+	main {
+		flex-direction: column;
+		margin: 5% 5%;
+	}
+	* {
+		color: blue;
+	}
 }
