@@ -1,4 +1,22 @@
 :root {
+	/* color variables */
+
+	/* planets */
+	--Mecury-active: #419ebb;
+	--Venus-active: #eda249;
+	--Earth-active: #6f2ed6;
+	--Mars-active: #d14c32;
+	--Jupiter-active: #d83a34;
+	--Saturn-active: #cd5120;
+	--Uranus-active: #1ec2a4;
+	--Neptune-active: #2d68f0;
+
+	/* basic colors */
+	--white: #ffffff;
+	--black-blue: #070724;
+	--dark-grey: #38384f;
+	--light-grey: #838391;
+
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;

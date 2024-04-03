@@ -9,6 +9,10 @@ const App = () => {
 	const [navState, setNavState] = useState<Planet>("Mercury");
 	const [contentState, setContentState] = useState<ContentType>("overview");
 
+	//TODO:
+	//switch color theme by planet
+	//responsive design for mobile && tablet
+
 	const getPlanetNames = (data: PlanetData[]): string[] => {
 		return data.map((entry) => entry.name);
 	};
@@ -87,7 +91,7 @@ const App = () => {
 							return (
 								<Card
 									key={i}
-									style={`${category === contentState && `active`} content-card`}
+									style={`${category === contentState && `${navState}-active`} content-card`}
 									content={[(i + 1).toString(), category]}
 									updatePlanetContent={handleConentChange}
 								/>
