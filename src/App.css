@@ -16,7 +16,7 @@ h2 {
 main {
 	display: flex;
 	justify-content: space-between;
-	margin: 5% 12.5%;
+	margin: 1% 11% 1% 10%;
 }
 
 section {
@@ -24,7 +24,7 @@ section {
 }
 
 section.image-container {
-	width: 64%;
+	width: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -77,5 +77,7 @@ section.quick-fact-container {
 	}
 	* {
 		color: blue;
+	}
+	.content-container {
 	}
 }
