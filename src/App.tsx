@@ -1,7 +1,7 @@
 import { MouseEventHandler, useState } from "react";
 import Card from "./Components/Card/Card";
 import Nav from "./Components/Nav/Nav";
-import { Link, PlanetData, QuickFacts, ContentType, DataWithSource, Planet, PlanetImages } from "./utils/types";
+import { Link, PlanetData, QuickFacts, ContentType, DataWithSource, Planet } from "./utils/types";
 import data from "./data.json";
 import "./App.css";
 
