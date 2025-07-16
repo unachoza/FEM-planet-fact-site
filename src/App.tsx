@@ -1,13 +1,21 @@
 import { MouseEventHandler, useState } from "react";
 import Card from "./Components/Card/Card";
 import Nav from "./Components/Nav/Nav";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Link, PlanetData, QuickFacts, ContentType, DataWithSource, Planet } from "./utils/types";
+import { useLocation } from "react-router-dom";
 import data from "./data.json";
 import "./App.css";
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, useGSAP);
 
 const App = () => {
 	const [navState, setNavState] = useState<Planet>("Mercury");
 	const [contentState, setContentState] = useState<ContentType>("overview");
+	let location = useLocation().pathname.split("/");
 
 	//TODO:
 	//add images
@@ -24,7 +32,7 @@ const App = () => {
 		setNavState(planet);
 	};
 
-	const handleConentChange: MouseEventHandler<HTMLDivElement> = (event) => {
+	const handleContentChange: MouseEventHandler<HTMLDivElement> = (event) => {
 		const target = event.currentTarget as HTMLDivElement;
 		const contentType: ContentType = target.innerText.toLocaleLowerCase().replace(/\d+/g, "").replace(/^\s+/, "") as ContentType;
 		setContentState(contentType);
@@ -81,7 +89,7 @@ const App = () => {
 
 	return (
 		<>
-			<Nav pageNames={getPlanetNames(data)} updatePageContent={handleNavChange} />
+			<Nav pageNames={getPlanetNames(data)} updatePageContent={handleNavChange} activePlanet={navState} />
 			<main>
 				<section className="image-container">
 					{/* <img src={`/assets/planet-${navState.toLocaleLowerCase()}.svg`} alt="planet" /> */}
@@ -103,7 +111,7 @@ const App = () => {
 									key={i}
 									style={`${category === contentState && `${navState}-active`} content-card`}
 									content={[(i + 1).toString(), category]}
-									updatePlanetContent={handleConentChange}
+									updatePlanetContent={handleContentChange}
 								/>
 							);
 						})}

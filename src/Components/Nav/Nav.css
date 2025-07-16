@@ -7,17 +7,26 @@ nav {
 	border-bottom: solid #838391 1px;
 }
 
-h4 {
-	font-size: 11px;
-	color: #838391;
-	text-transform: uppercase;
+a {
+	color: #FFF;
+	font-size: 0.6875rem;
+	font-weight: 700;
+	line-height: 1.5625rem; 
 	margin: 0px 20px;
+	text-decoration:none;
+	letter-spacing: 0.0625rem;
+	text-transform: uppercase;
 }
 
-.page-link-container {
+.active {
+	border-bottom: solid red 2px;
+}
+
+ul.page-link-container {
 	display: flex;
 	justify-content: space-between;
 	width: fit-content;
+	list-style-type: none
 }
 
 .logo {
